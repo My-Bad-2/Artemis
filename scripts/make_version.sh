@@ -19,13 +19,13 @@ GIT_DESCRIPTION="${GIT_DESCRIPTION#*-}"
 DIRTY="${GIT_DESCRIPTION%%-*}"
 GIT_DESCRIPTION="${GIT_DESCRIPTION#*-}"
 
-if [ $DIRTY == "dirty" ]; then
+if [ [$DIRTY == "dirty"] ]; then
     DIRTY_FLAG="+"
 else
     DIRTY_FLAG=""
 fi
 
-if [ $COMMITS_PAST == "0" ]; then
+if [ [$COMMITS_PAST == "0"] ]; then
     COMMITS_PAST_STR=""
 else
     COMMITS_PAST_STR="-$COMMITS_PAST"
