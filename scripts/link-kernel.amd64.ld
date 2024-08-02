@@ -26,15 +26,24 @@ SECTIONS
         *(.rodata .rodata.*)
     } :rodata
 
+    . += CONSTANT(MAXPAGESIZE);
+
     .init_array : {
-        PROVIDE_HIDDEN(__init_array_start = .);
-        KEEP(*(SORT_BY_INIT_PRIORITY(.init_array.*) SORT_BY_INIT_PRIORITY(.ctors.*)))
-        KEEP(*(.init_array .ctors))
-        PROVIDE_HIDDEN(__init_array_end = .);
+        crti.o(.init_array)
+        KEEP (*(SORT(EXCLUDE_FILE(crti.o crtn.o) .init_array.*)))
+        KEEP (*(EXCLUDE_FILE(crti.o crtn.o) .init_array))
+        crtn.o(.init_array)
+    }
+
+    .fini_array : {
+        crti.o(.fini_array)
+    KEEP (*(SORT(EXCLUDE_FILE(crti.o crtn.o) .fini_array.*)))
+    KEEP (*(EXCLUDE_FILE(crti.o crtn.o) .fini_array))
+    crtn.o(.fini_array)
     }
 
     . += CONSTANT(MAXPAGESIZE);
-
+    
     .data : {
         *(.data .data.*)
 

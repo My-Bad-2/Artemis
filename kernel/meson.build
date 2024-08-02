@@ -6,6 +6,10 @@ endif
 
 kernel_sources = files('main.cpp')
 
+if get_option('kernel_arch') == 'amd64'
+    subdir('arch/amd64')
+endif
+
 clangtidy_files += kernel_sources
 
 kernel = executable(

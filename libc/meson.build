@@ -2,6 +2,7 @@ libc_include = [include_directories('include')]
 
 libc_sources = files('ctype.c')
 
+subdir('abi')
 subdir('string')
 subdir('stdio')
 

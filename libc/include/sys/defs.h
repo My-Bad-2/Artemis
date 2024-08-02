@@ -27,6 +27,7 @@
 
 #define __NO_INLINE __attribute__((__noinline__))
 #define __ALWAYS_INLINE __attribute__((__always_inline__))
+#define __USED __attribute__((used))
 
 #ifndef __cplusplus
 #define __UNUSED __attribute__((__unused__))
