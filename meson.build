@@ -2,7 +2,7 @@ project(
     'Artemis',
     'c',
     'cpp',
-    default_options: ['buildtype=debugoptimized', 'c_std=c23', 'cpp_std=c++23'],
+    default_options: ['buildtype=debugoptimized'],
     license: 'MIT',
     meson_version: '>=1.0.0',
     subproject_dir: 'external',
@@ -80,7 +80,10 @@ limine = subproject(
 ovmf = subproject('ovmf_binaries', required: true)
 ovmf_binaries = ovmf.get_variable(get_option('kernel_arch'))
 
-dependencies = [dependency('limine')]
+dependencies = [
+    dependency('limine'),
+    dependency('libstdcxx', default_options: 'arch=' + get_option('kernel_arch'))
+]
 
 dependencies_includes = []
 

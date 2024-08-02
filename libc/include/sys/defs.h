@@ -13,6 +13,10 @@
 #define restrict __restrict
 #endif
 
+#ifndef __STRINGIFY
+#define __STRINGIFY(a, b) a##b
+#endif
+
 #ifndef __has_cpp_attribute
 #define __has_cpp_attribute(x) 0
 #endif
@@ -82,27 +86,18 @@
 #define __NO_SAFESTACK
 #endif
 
-// The given C++ class or struct need not have a unique address when part of
-// a larger struct or class, but can be safely collapsed into a zero-byte
-// object by the compiler.
 #if __has_cpp_attribute(no_unique_address)
 #define __NO_UNIQUE_ADDRESS [[no_unique_address]]
 #else
 #define __NO_UNIQUE_ADDRESS
 #endif
 
-// Indicate that the given function should be treated by the Clang static
-// analyzer as if it doesn't return.
-//
-// A workaround to help static analyzer identify assertion failures
 #if defined(__clang__)
 #define __ANALYZER_CREATE_SINK __attribute__((analyzer_noreturn))
 #else
 #define __ANALYZER_CREATE_SINK
 #endif
 
-// Mark the given function as externally visible, and shouldn't be optimized
-// away by link-time optimizations or whole-program optimizations.
 #if !defined(__clang__)
 #define __EXTERNALLY_VISIBLE __attribute__((__externally_visible__))
 #else

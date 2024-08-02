@@ -19,4 +19,5 @@ cpp_compile_flags = [
     '-fno-rtti',
     '-fno-exceptions',
     '-fno-unwind-tables',
+    '-std=c++2c'
 ]

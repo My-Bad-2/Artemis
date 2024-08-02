@@ -12,7 +12,8 @@ else
 endif
 
 clangformat_default_targets = [
-    meson.project_source_root() / 'src',
+    meson.project_source_root() / 'kernel',
+    meson.project_source_root() / 'libc',
 ]
 
 clangformat_targets = get_variable('clangformat_targets', clangformat_default_targets)
