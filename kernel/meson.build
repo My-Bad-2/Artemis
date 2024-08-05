@@ -10,6 +10,8 @@ if get_option('kernel_arch') == 'amd64'
     subdir('arch/amd64')
 endif
 
+subdir('libs')
+
 clangtidy_files += kernel_sources
 
 kernel = executable(

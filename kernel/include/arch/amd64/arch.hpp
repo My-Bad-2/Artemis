@@ -83,6 +83,7 @@ __NO_RETURN inline void Halt(bool ints = true)
 	}
 }
 
+void Write(int ch);
 void Initialize();
 } // namespace arch
 } // namespace artemis

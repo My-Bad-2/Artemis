@@ -7,10 +7,14 @@ namespace arch
 {
 devices::SerialDevice serials = devices::SerialDevice(ComPort1);
 
+void Write(int ch)
+{
+	serials.Write(ch);
+}
+
 void Initialize()
 {
 	serials.Initialize();
-	serials.Write("Hello, World!\n");
 }
 } // namespace arch
 } // namespace artemis
