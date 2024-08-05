@@ -1,5 +1,6 @@
 #include <arch.hpp>
 #include <devices/serials.hpp>
+#include <cpu/cpu.hpp>
 
 namespace artemis
 {
@@ -15,6 +16,7 @@ void Write(int ch)
 void Initialize()
 {
 	serials.Initialize();
+	cpu::Initialize();
 }
 } // namespace arch
 } // namespace artemis
