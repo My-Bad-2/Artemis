@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include <arch.hpp>
+#include <logger.hpp>
 
 extern "C" void kernel_main()
 {
@@ -7,7 +7,13 @@ extern "C" void kernel_main()
 
 	arch::Initialize();
 
-	printf("Hello, World!\n");
+	LogDebug("Hello, World!");
+	LogError("Hello, World!");
+	LogWarning("Hello, World!");
+	LogInfo("Hello, World!");
+	LogTrace("Hello, World!");
+	LogVerbose("Hello, World!");
+	LogFatal("Hello, World!");
 
 	arch::Halt(false);
 }

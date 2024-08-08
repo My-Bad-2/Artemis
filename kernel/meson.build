@@ -4,7 +4,7 @@ if get_option('kernel_arch') == 'amd64'
     kernel_include += include_directories('include/arch/amd64')
 endif
 
-kernel_sources = files('main.cpp')
+kernel_sources = files('main.cpp', 'logger.cpp')
 
 if get_option('kernel_arch') == 'amd64'
     subdir('arch/amd64')
