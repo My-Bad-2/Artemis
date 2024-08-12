@@ -98,7 +98,7 @@ struct GdtRegister
 
 	constexpr GdtRegister() = default;
 
-	constexpr GdtRegister(std::uint16_t limit, std::uint64_t base) : limit(limit), base(base)
+	GdtRegister(std::uint16_t limit, std::uint64_t base) : limit(limit), base(base)
 	{
 	}
 } __PACKED;

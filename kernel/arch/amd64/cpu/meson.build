@@ -4,4 +4,6 @@ kernel_sources += files(
     'gdt.S',
     'cpuid.cpp',
     'features.cpp',
+    'idt.cpp',
+    'exceptions.S',
 )

@@ -45,6 +45,8 @@ void Gdt::Initialize()
 	this->gdt_table_.user_data.Write(0, kDataFlags | FlagDpl3);
 	this->gdt_table_.user_code.Write(LongMode, kCodeFlags | FlagDpl3);
 	this->gdt_table_.tss.Write(&this->tss_);
+
+	this->Load();
 }
 
 void Gdt::Load()

@@ -9,25 +9,48 @@ namespace details
 {
 constexpr std::string_view LogColor(LogLevel level)
 {
-    // Reference: docs/escape_sequences.md
+	// Reference: docs/escape_sequences.md
 	switch(level)
 	{
 		case LogReset:
 			return "\e[0m\n";
 		case LogFatal:
-			return "\e[38;5;160m";
+			return "\e[38;5;210m";
 		case LogError:
-			return "\e[38;5;88m";
+			return "\e[38;5;214m";
 		case LogWarning:
-			return "\e[38;5;202m";
+			return "\e[38;5;226m";
 		case LogInfo:
-			return "\e[38;5;40m";
+			return "\e[38;5;46m";
 		case LogDebug:
-			return "\e[38;5;27m";
+			return "\e[38;5;51m";
 		case LogTrace:
-			return "\e[38;5;33m";
+			return "\e[38;5;195m";
 		case LogVerbose:
-			return "\e[38;5;22m";
+			return "\e[38;5;82m";
+	}
+}
+
+constexpr std::string_view LogType(LogLevel level)
+{
+	switch(level)
+	{
+		case LogReset:
+			return "";
+		case LogFatal:
+			return "F";
+		case LogError:
+			return "E";
+		case LogWarning:
+			return "W";
+		case LogInfo:
+			return "I";
+		case LogDebug:
+			return "D";
+		case LogTrace:
+			return "T";
+		case LogVerbose:
+			return "V";
 	}
 }
 } // namespace details
@@ -37,8 +60,8 @@ void Log(LogLevel log_level, std::source_location location, const char* format, 
 	constexpr std::string_view reset_color = details::LogColor(LogReset);
 	std::string_view color = details::LogColor(log_level);
 
-	fprintf(stderr, "%s[%s @ %s] -> ", color.data(), location.function_name(),
-			location.file_name());
+	fprintf(stderr, "%s[%s] [%s] -> ", color.data(), details::LogType(log_level).data(),
+			location.function_name());
 
 	va_list args = {};
 	va_start(args, format);

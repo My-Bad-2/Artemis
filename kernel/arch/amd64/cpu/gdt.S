@@ -1,13 +1,9 @@
-#define KERNEL_CODE_SELECTOR 0x08
-#define KERNEL_DATA_SELECTOR 0x10
-#define USER_DATA_SELECTOR 0x18
-#define USER_CODE_SELECTOR 0x20
-#define TSS_SELECTOR 0x28
+#include <asm/macro.h>
+#include <asm/regs.h>
 
 .section .text
 
-.global LoadGdt
-LoadGdt:
+.function LoadGdt, scope=global, align=64
     lgdtq (%rdi)
     movw $KERNEL_DATA_SELECTOR, %ax
     movl %eax, %ds
@@ -21,9 +17,10 @@ LoadGdt:
     lretq
 .gdt_trampoline:
     retq
+.end_function
 
-.global LoadTss
-LoadTss:
+.function LoadTss, scope=global
     movw $TSS_SELECTOR, %ax
     ltrw %ax
     retq
+.end_function
