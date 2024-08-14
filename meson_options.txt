@@ -1,1 +1,2 @@
 option('kernel_arch', type: 'string', value: 'amd64', description: 'Kernel Architecture (amd64)')
+option('ubsan', type: 'boolean', value: false)

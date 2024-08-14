@@ -19,8 +19,6 @@ void Initialize()
 	global_idt.Initialize();
 
 	arch::EnableInterrupts();
-
-	asm volatile("div %ah");
 }
 
 extern "C"

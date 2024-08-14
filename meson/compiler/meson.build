@@ -52,4 +52,8 @@ common_compile_flags = [
     '-fno-omit-frame-pointer',
 ]
 
+if get_option('ubsan')
+    common_compile_flags += ['-fsanitize=undefined']
+endif
+
 common_link_flags = ['-Wl,-dead_strip', '-Wl,--gc-sections']

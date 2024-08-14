@@ -102,7 +102,7 @@ void ExceptionHandler(Iframe* iframe)
 	}
 
 	DumpInterruptFrame(iframe);
-	LogPanic("Unhandled Exception, halting!");
+	LogPanic("Unhandled Exception %lu, halting!", iframe->vector);
 }
 } // namespace details
 
