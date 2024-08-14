@@ -14,6 +14,7 @@ constexpr std::string_view LogColor(LogLevel level)
 	{
 		case LogReset:
 			return "\e[0m\n";
+		case LogPanic:
 		case LogFatal:
 			return "\e[38;5;210m";
 		case LogError:
@@ -37,6 +38,7 @@ constexpr std::string_view LogType(LogLevel level)
 	{
 		case LogReset:
 			return "";
+		case LogPanic:
 		case LogFatal:
 			return "F";
 		case LogError:
@@ -55,13 +57,12 @@ constexpr std::string_view LogType(LogLevel level)
 }
 } // namespace details
 
-void Log(LogLevel log_level, std::source_location location, const char* format, ...)
+void Log(LogLevel log_level, const char* format, ...)
 {
 	constexpr std::string_view reset_color = details::LogColor(LogReset);
 	std::string_view color = details::LogColor(log_level);
 
-	fprintf(stderr, "%s[%s] [%s] -> ", color.data(), details::LogType(log_level).data(),
-			location.function_name());
+	fprintf(stderr, "%s[%s] ", color.data(), details::LogType(log_level).data());
 
 	va_list args = {};
 	va_start(args, format);
@@ -72,7 +73,7 @@ void Log(LogLevel log_level, std::source_location location, const char* format, 
 
 	fprintf(stderr, reset_color.data());
 
-	if(log_level == LogFatal)
+	if(log_level == LogPanic)
 	{
 		arch::Halt(false);
 	}

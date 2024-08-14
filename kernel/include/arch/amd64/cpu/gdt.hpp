@@ -112,13 +112,13 @@ class Gdt
 	{
 	}
 
-	~Gdt() = default;
-
 	Gdt(const Gdt&) = delete;
 	Gdt(Gdt&&) = delete;
 
 	Gdt& operator=(const Gdt&) = delete;
 	Gdt& operator=(Gdt&&) = delete;
+
+	~Gdt() = default;
 
 	void Initialize();
 	void Load();

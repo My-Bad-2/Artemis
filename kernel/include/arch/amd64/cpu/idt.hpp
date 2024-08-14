@@ -2,8 +2,7 @@
 #define AMD64_CPU_IDT_HPP
 
 #include <array>
-#include <cstddef>
-#include <cstdint>
+#include <drivers/interrupt.hpp>
 #include <sys/defs.h>
 
 #define MAX_ENTRIES 256
@@ -69,14 +68,24 @@ struct IdtRegister
 class Idt
 {
   public:
-	constexpr Idt() = default;
+	Idt() = default;
+
+	Idt(const Idt&) = delete;
+	Idt(Idt&&) = delete;
+
+	Idt& operator=(const Idt&) = delete;
+	Idt& operator=(Idt&&) = delete;
+
 	~Idt() = default;
 
 	void Initialize();
 	void Load();
 
+	bool HandleInterrupts(Iframe* iframe);
+
   private:
 	IdtTable idt_table_;
+	std::array<Interrupt, MAX_ENTRIES> handlers_;
 };
 } // namespace cpu
 } // namespace artemis

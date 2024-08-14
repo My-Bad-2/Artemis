@@ -26,7 +26,7 @@
 .endm
 
 .macro isr.dispatch.define.next
-    isr.dispatch.define isr.dispatch.\@.is.not.the.isr.number
+    isr.dispatch.define isr.dispatch.\@
     isr.current = isr.current + 1
 .endm
 
