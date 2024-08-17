@@ -102,7 +102,7 @@ subdir('meson/analysis/clang-tidy')
 subdir('meson/format')
 
 # Packaging
-iso_files = [kernel, files('scripts/limine.cfg')]
+iso_files = [kernel, files('scripts/limine.conf')]
 iso_files += limine.get_variable('limine_binaries')
 
 subdir('meson/packaging/xorriso')

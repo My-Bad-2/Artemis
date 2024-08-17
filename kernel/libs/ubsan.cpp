@@ -6,7 +6,7 @@
 	__NO_RETURN void __ubsan_handle_##name##_abort params \
 	{                                                     \
 		__ubsan_handle_##name call;                       \
-		__builtin_unreachable();                          \
+		__UNREACHABLE();                          \
 	}
 
 #define ABORT_VARIANT_VP(name) ABORT_VARIANT(name, (void* a), (a))
@@ -127,9 +127,7 @@ void UbsanAbort(const SourceLocation* location, const char* violation)
 	LogFatal("<UBSAN> Column    = %u", location->column);
 	LogPanic("<UBSAN> Violation = %s", violation);
 
-	while(1)
-	{
-	}
+	__UNREACHABLE();
 }
 
 __CDECLS_BEGIN

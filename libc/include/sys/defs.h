@@ -124,7 +124,7 @@
 #define __GET_CALLER(x) __builtin_return_address(0)
 #define __GET_FRAME(x) __builtin_frame_address(0)
 #define __ISCONSTANT(x) __builtin_constant_p(x)
-#define __UNREACHABLE __builtin_unreachable()
+#define __UNREACHABLE() __builtin_unreachable()
 #define __offsetof(type, field) __builtin_offsetof(type, field)
 
 #define add_overflow(a, b, result) __builtin_add_overflow(a, b, result)

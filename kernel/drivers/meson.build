@@ -1,1 +1,3 @@
-kernel_sources += files('interrupt.cpp')
+kernel_sources += files(
+    'interrupt.cpp'
+)

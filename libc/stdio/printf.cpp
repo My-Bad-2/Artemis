@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int snprintf(char* buffer, size_t n, const char* format, ...)
+int snprintf(char* buffer, size_t n, const char* restrict format, ...)
 {
 	va_list args = {};
 	va_start(args, format);
@@ -10,7 +10,7 @@ int snprintf(char* buffer, size_t n, const char* format, ...)
 	return ret;
 }
 
-int sprintf(char* buffer, const char* format, ...)
+int sprintf(char* buffer, const char* restrict format, ...)
 {
 	va_list args = {};
 	va_start(args, format);
@@ -20,7 +20,7 @@ int sprintf(char* buffer, const char* format, ...)
 	return ret;
 }
 
-int fprintf(FILE* fp, const char* format, ...)
+int fprintf(FILE* fp, const char* restrict format, ...)
 {
 	va_list args = {};
 	va_start(args, format);
@@ -30,7 +30,7 @@ int fprintf(FILE* fp, const char* format, ...)
 	return ret;
 }
 
-int printf(const char* format, ...)
+int printf(const char* restrict format, ...)
 {
 	va_list args = {};
 	va_start(args, format);

@@ -65,15 +65,15 @@ int fputs(const char* restrict str, FILE* fp);
 int putchar(int ch);
 int puts(const char* restrict str);
 
-int snprintf(char* buffer, size_t n, const char* format, ...) __PRINTFLIKE(3, 4);
-int sprintf(char* buffer, const char* format, ...) __PRINTFLIKE(2, 3);
-int fprintf(FILE* fp, const char* format, ...) __PRINTFLIKE(2, 3);
-int printf(const char* format, ...) __PRINTFLIKE(1, 2);
+int snprintf(char* buffer, size_t n, const char* restrict format, ...) __PRINTFLIKE(3, 4);
+int sprintf(char* buffer, const char* restrict format, ...) __PRINTFLIKE(2, 3);
+int fprintf(FILE* fp, const char* restrict format, ...) __PRINTFLIKE(2, 3);
+int printf(const char* restrict format, ...) __PRINTFLIKE(1, 2);
 
-int vsnprintf(char* buffer, size_t n, const char* format, va_list args) __PRINTFLIKE(3, 0);
-int vsprintf(char* buffer, const char* format, va_list args) __PRINTFLIKE(2, 0);
-int vfprintf(FILE* fp, const char* format, va_list args) __PRINTFLIKE(2, 0);
-int vprintf(const char* format, va_list args) __PRINTFLIKE(1, 0);
+int vsnprintf(char* buffer, size_t n, const char* restrict format, va_list args) __PRINTFLIKE(3, 0);
+int vsprintf(char* buffer, const char* restrict format, va_list args) __PRINTFLIKE(2, 0);
+int vfprintf(FILE* fp, const char* restrict format, va_list args) __PRINTFLIKE(2, 0);
+int vprintf(const char* restrict format, va_list args) __PRINTFLIKE(1, 0);
 
 __CDECLS_END
 

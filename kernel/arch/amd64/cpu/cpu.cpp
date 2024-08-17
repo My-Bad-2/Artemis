@@ -21,22 +21,23 @@ void Initialize()
 	arch::EnableInterrupts();
 }
 
-extern "C"
+__CDECLS_BEGIN
+
+void ExceptionHandler(void* frame)
 {
-	void ExceptionHandler(void* rdi)
-	{
-		Iframe* iframe = static_cast<Iframe*>(rdi);
+	Iframe* iframe = static_cast<Iframe*>(frame);
 
-		if(!global_idt.HandleInterrupts(iframe))
-		{
-			LogDebug("Interrupt Handler %lu not registered", iframe->vector);
-		}
-	}
-
-	void NmiHandler()
+	if(!global_idt.HandleInterrupts(iframe))
 	{
-		LogPanic("NMI Handler called!");
+		LogDebug("Interrupt Handler %lu not registered", iframe->vector);
 	}
 }
+
+void NmiHandler(void* frame)
+{
+	LogPanic("NMI Handler called!");
+}
+
+__CDECLS_END
 } // namespace cpu
 } // namespace artemis

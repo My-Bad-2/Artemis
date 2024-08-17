@@ -37,9 +37,9 @@ SECTIONS
 
     .fini_array : {
         crti.o(.fini_array)
-    KEEP (*(SORT(EXCLUDE_FILE(crti.o crtn.o) .fini_array.*)))
-    KEEP (*(EXCLUDE_FILE(crti.o crtn.o) .fini_array))
-    crtn.o(.fini_array)
+        KEEP (*(SORT(EXCLUDE_FILE(crti.o crtn.o) .fini_array.*)))
+        KEEP (*(EXCLUDE_FILE(crti.o crtn.o) .fini_array))
+        crtn.o(.fini_array)
     }
 
     . += CONSTANT(MAXPAGESIZE);
@@ -47,9 +47,9 @@ SECTIONS
     .data : {
         *(.data .data.*)
 
-        *(.limine_requests_start_marker)
-        *(.limine_requests)
-        *(.limine_requests_end_marker)
+        KEEP (*(.limine_requests_start_marker))
+        KEEP (*(.limine_requests))
+        KEEP (*(.limine_requests_end_marker))
     } :data
 
     .dynamic : {
@@ -64,5 +64,6 @@ SECTIONS
     /DISCARD/ : {
         *(.eh_frame)
         *(.note .note.*)
+        *(.interp)
     }
 }
