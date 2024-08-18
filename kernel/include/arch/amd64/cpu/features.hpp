@@ -1,11 +1,10 @@
 #ifndef AMD64_CPU_FEATURES_HPP
 #define AMD64_CPU_FEATURES_HPP
 
-#include <cstdint>
 #include <cpu/cpuid.hpp>
 
 #define CPUID_BIT(leaf, word, bit) \
-	(artemis::cpu::CpuidBit)({(artemis::cpu::CpuidLeafNum)(leaf), (word), (bit)})
+	(artemis::cpu::CpuidBit((artemis::cpu::CpuidLeafNum)(leaf), (word), (bit)))
 
 #define FEATURE_SSE3 CPUID_BIT(0x1, 2, 0)
 #define FEATURE_MON CPUID_BIT(0x1, 2, 3)
@@ -114,6 +113,7 @@ enum CpuidLeafNum : std::uint32_t
 	CpuidTsc = 0x15,
 
 	CpuidExtBase = 0x80000000,
+	CpuidFeats = 0x80000001,
 	CpuidBrand = 0x80000002,
 	CpuidAddrWidth = 0x80000008,
 	CpuidAmdTopology = 0x8000001e,
@@ -124,6 +124,11 @@ struct CpuidBit
 	CpuidLeafNum leaf_num;
 	std::uint8_t word;
 	std::uint8_t bit;
+
+	CpuidBit(CpuidLeafNum leaf_num, std::uint8_t word, std::uint8_t bit) :
+		leaf_num(leaf_num), word(word), bit(bit)
+	{
+	}
 };
 
 bool FeatureTest(CpuidBit bit);

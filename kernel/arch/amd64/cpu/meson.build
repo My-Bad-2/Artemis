@@ -6,4 +6,5 @@ kernel_sources += files(
     'features.cpp',
     'idt.cpp',
     'exceptions.S',
+    'registers.cpp'
 )

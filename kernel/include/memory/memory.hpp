@@ -1,6 +1,7 @@
 #ifndef MEMORY_MEMORY_HPP
 #define MEMORY_MEMORY_HPP
 
+#include <cstdint>
 #include <concepts>
 #include <artemis.h>
 #include <type_traits>
@@ -12,6 +13,7 @@ namespace memory
 constexpr std::size_t page_size_4KiB = 0x1000;
 constexpr std::size_t page_size_2MiB = page_size_4KiB * 512;
 constexpr std::size_t page_size_1GiB = page_size_2MiB * 512;
+constexpr std::uintptr_t invalid_address = -1;
 
 template<typename T>
 using GetRet =

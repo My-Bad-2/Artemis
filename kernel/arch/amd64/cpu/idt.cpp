@@ -1,8 +1,9 @@
 #include <asm/regs.h>
 #include <mmu.hpp>
 #include <cpu/idt.hpp>
-#include <cpu/gdt.hpp>
 #include <cpu/interrupts.hpp>
+#include <cpu/gdt.hpp>
+#include <cpu/registers.hpp>
 #include <logger.hpp>
 #include <cstddef>
 #include <libs/stacktrace.hpp>
@@ -96,8 +97,7 @@ void ExceptionHandler(Iframe* iframe)
 
 	if(iframe->vector == IntPageFault)
 	{
-		std::uint64_t cr2 = 0;
-		asm volatile("mov %%cr2, %0" : "=r"(cr2)::"memory");
+		std::uint64_t cr2 = ReadCr2();
 		return PageFaultHandler(iframe, cr2);
 	}
 
