@@ -19,8 +19,7 @@ struct PageTable
 class PageMap
 {
   public:
-	PageMap() :
-		top_lvl_(nullptr), physical_manager_(nullptr), pml3_translation_(false)
+	PageMap() : top_lvl_(nullptr), physical_manager_(nullptr), pml3_translation_(false)
 	{
 	}
 
@@ -47,14 +46,15 @@ class PageMap
 	bool Remap(std::uintptr_t new_virtual_address, std::uintptr_t virtual_address,
 			   std::size_t flags, std::size_t page_size, std::size_t size);
 
+	std::uintptr_t VirtualToPhysical(std::uintptr_t virtual_address,
+									 std::size_t page_size = page_size_4KiB);
+
 	void Load();
 	void Save();
 
   private:
 	PageEntry* VirtualToPageEntry(std::uintptr_t virtual_address, bool allocate,
 								  std::size_t page_size, bool check_large);
-	std::uintptr_t VirtualToPhysical(std::uintptr_t virtual_address,
-									 std::size_t page_size = page_size_4KiB);
 
 	void* GetNextLvl(PageEntry& entry, bool allocate, std::uintptr_t virt_addr = -1,
 					 std::size_t old_page_size = -1, std::size_t page_size = -1);

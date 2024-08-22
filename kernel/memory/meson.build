@@ -1,4 +1,5 @@
 kernel_sources += files(
     'memory.cpp',
-    'phys.cpp'
+    'phys.cpp',
+    'vmm.cpp'
 )

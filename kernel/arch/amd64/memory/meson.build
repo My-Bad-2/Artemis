@@ -1,3 +1,4 @@
 kernel_sources += files(
-    'paging.cpp'
+    'paging.cpp',
+    'vmm.cpp'
 )
